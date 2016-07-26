@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lista de Usuários Buscapé</string>
+    <string name="image_link">http://loremflickr.com/%s/dog</string>
+    <string name="more_button">VER MAIS</string>
+</resources>
