@@ -1,4 +1,4 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

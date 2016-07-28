@@ -1,4 +1,4 @@
-package com.challenge.buscape.buscapeuserslist.Data.webservice;
+package com.challenge.buscape.buscapeuserslist.data.webservice;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -6,18 +6,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by eliete on 7/25/16.
  */
-public class RetrofitWebServiceApiManagerImpl implements RetrofitWebServiceManager {
+public class WebServiceApiManagerImpl implements WebServiceManager {
 
     public static final String BASE_URL = "http://jsonplaceholder.typicode.com/";
-    private RetrofitWebServiceApi retrofitWebServiceApi;
+    private WebServiceApi webServiceApi;
 
-    public RetrofitWebServiceApiManagerImpl() {
+    public WebServiceApiManagerImpl() {
         setupWebServiceApi();
     }
 
     @Override
-    public RetrofitWebServiceApi getWebServiceApiInstance() {
-        return retrofitWebServiceApi;
+    public WebServiceApi getWebServiceApiInstance() {
+        return webServiceApi;
     }
 
     @Override
@@ -27,6 +27,6 @@ public class RetrofitWebServiceApiManagerImpl implements RetrofitWebServiceManag
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        retrofitWebServiceApi = retrofit.create(RetrofitWebServiceApi.class);
+        webServiceApi = retrofit.create(WebServiceApi.class);
     }
 }

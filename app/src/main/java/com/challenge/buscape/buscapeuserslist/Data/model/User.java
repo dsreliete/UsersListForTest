@@ -1,4 +1,4 @@
-package com.challenge.buscape.buscapeuserslist.Data.model;
+package com.challenge.buscape.buscapeuserslist.data.model;
 
 import java.io.Serializable;
 
@@ -14,52 +14,37 @@ public class User implements Serializable {
     String phone;
     String website;
 
-    public int getId() {
-        return id;
+    public User(int id, String name, String email, Address address, String phone, String website) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.website = website;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getWebsite() {
         return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
 import com.challenge.buscape.buscapeuserslist.R;
 import com.squareup.picasso.Picasso;
 
@@ -53,7 +53,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     .load(imageLink)
                     .placeholder(R.drawable.default_placeholder)
                     .into(holder.personImageView);
-
         }
     }
 
@@ -94,4 +93,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             userTouchListener.onUserClick(user);
         }
     }
+
 }

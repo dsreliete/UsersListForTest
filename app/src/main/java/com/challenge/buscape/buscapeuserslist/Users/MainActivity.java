@@ -1,12 +1,10 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,10 +12,10 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
 import com.challenge.buscape.buscapeuserslist.R;
-import com.challenge.buscape.buscapeuserslist.UsersDetail.DetailActivity;
-import com.challenge.buscape.userslist.Data.webservice.Injection;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.webservice.UserRepositoryImpl;
+import com.challenge.buscape.buscapeuserslist.usersDetail.UserDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +61,11 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
         recyclerView.setAdapter(adapter);
 
         if (MainActivity.hasConnection(this)) {
-            userActionListener = new MainPresenter(this, Injection.provideUsersList());
+            userActionListener = new MainPresenter(this, new UserRepositoryImpl());
             userActionListener.fetchUserList();
         }else {
-            AlertDialogFragment alertDialogFragment = AlertDialogFragment.newInstance();
+            AlertDialogFragment alertDialogFragment =
+                    AlertDialogFragment.newInstance(getResources().getString(R.string.network_msg));
             alertDialogFragment.show(getSupportFragmentManager(), "alert");
         }
     }
@@ -79,31 +78,29 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
         {
             case DisplayMetrics.DENSITY_MEDIUM:
                 link = "100/150";
-                detailLink = "250/250";
+                detailLink = "378/250";
                 break;
             case DisplayMetrics.DENSITY_HIGH:
                 link = "150/225";
-                detailLink = "378/378";
+                detailLink = "567/378";
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
                 link = "200/300";
-                detailLink = "504/504";
+                detailLink = "756/504";
                 break;
             case DisplayMetrics.DENSITY_XXHIGH:
                 link = "300/450";
-                detailLink = "756/756";
+                detailLink = "1134/756";
                 break;
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                link = "400/600";
+                detailLink = "1512/1008";
+                break;
+
         }
         imageDetailLink = getResources().getString(R.string.image_link, detailLink);
         return getResources().getString(R.string.image_link, link);
 
-    }
-
-    public void showSnackBar(String message) {
-        Snackbar.make(this.findViewById(android.R.id.content), message,
-                Snackbar.LENGTH_SHORT)
-                .setActionTextColor(Color.WHITE)
-                .show();
     }
 
     public static boolean hasConnection(Context context) {
@@ -135,7 +132,7 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
 
     @Override
     public void showUserDetailActivity(User user) {
-        Intent intent = new Intent(this, DetailActivity.class);
+        Intent intent = new Intent(this, UserDetailActivity.class);
         intent.putExtra(EXTRA_USER, user);
         intent.putExtra(EXTRA_IMAGE, imageDetailLink);
         startActivity(intent);
@@ -154,7 +151,7 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
 
     @Override
     public void initDownload() {
-        userActionListener = new MainPresenter(this, Injection.provideUsersList());
+        userActionListener = new MainPresenter(this, new UserRepositoryImpl());
         userActionListener.fetchUserList();
     }
 

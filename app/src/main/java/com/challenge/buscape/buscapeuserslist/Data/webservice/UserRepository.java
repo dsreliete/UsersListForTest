@@ -1,13 +1,13 @@
-package com.challenge.buscape.buscapeuserslist.Data.webservice;
+package com.challenge.buscape.buscapeuserslist.data.webservice;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
 
 import java.util.List;
 
 /**
  * Created by eliete on 7/25/16.
  */
-public interface WebService {
+public interface UserRepository {
 
     interface getListOnFinishedListener {
         void onFinishedList(List<User> items);

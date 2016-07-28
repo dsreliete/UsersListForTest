@@ -1,23 +1,24 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.support.annotation.NonNull;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
-import com.challenge.buscape.buscapeuserslist.Data.webservice.WebService;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.webservice.UserRepository;
 
 import java.util.List;
 
 /**
  * Created by eliete on 7/25/16.
  */
-public class MainPresenter implements MainContract.UserActionListener, WebService.getListOnFinishedListener {
+public class MainPresenter implements MainContract.UserActionListener,
+        UserRepository.getListOnFinishedListener {
 
     private MainContract.View mainContract;
-    private WebService webService;
+    private UserRepository userRepository;
 
-    public MainPresenter(MainActivity mainActivity, WebService service) {
+    public MainPresenter(MainActivity mainActivity, UserRepository service) {
         mainContract = mainActivity;
-        webService = service;
+        userRepository = service;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class MainPresenter implements MainContract.UserActionListener, WebServic
             mainContract.showProgress();
         }
 
-        webService.getUsersList(this);
+        userRepository.getUsersList(this);
     }
 
     @Override

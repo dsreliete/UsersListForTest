@@ -16,17 +16,11 @@
         android:id="@+id/dog_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_below="@id/toolbar" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:layout_below="@+id/dog_image"/>
+        android:layout_below="@id/toolbar"
+        android:layout_centerInParent="true"/>
 
     <android.support.v7.widget.AppCompatImageButton
+        android:layout_marginTop="16dp"
         android:id="@+id/email_image"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -34,20 +28,20 @@
         android:paddingLeft="32dp"
         android:paddingRight="16dp"
         android:background="@android:color/white"
-        android:layout_below="@+id/progressBar" />
+        android:layout_below="@+id/dog_image" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/email_text"
         style="@style/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="eliete rodrigues"
         android:layout_marginLeft="43dp"
         android:layout_marginStart="43dp"
         android:layout_alignBottom="@+id/email_image"
         android:layout_toRightOf="@+id/email_image"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackground"/>
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/phone_image"
@@ -66,12 +60,12 @@
         style="@style/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="eliete rodrigues"
         android:layout_above="@+id/address_image"
         android:layout_alignLeft="@+id/email_text"
         android:layout_alignStart="@+id/email_text"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackground"/>
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/address_image"
@@ -97,30 +91,27 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/street_text"
-            style="@style/TextView"
+            style="@style/TextView.NoPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eliete rodrigues"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/city_text"
-            style="@style/TextView"
+            style="@style/TextView.NoPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eliete rodrigues"
             android:layout_below="@+id/street_text"
             android:layout_alignLeft="@+id/street_text"
             android:layout_alignStart="@+id/street_text" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/zip_text"
-            style="@style/TextView"
+            style="@style/TextView.NoPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eliete rodrigues"
             android:layout_below="@+id/city_text"
             android:layout_alignLeft="@+id/city_text"
             android:layout_alignStart="@+id/city_text" />
@@ -145,9 +136,16 @@
         style="@style/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="eliete rodrigues"
         android:layout_below="@+id/adress_container"
         android:layout_alignLeft="@+id/phone_text"
         android:layout_alignStart="@+id/phone_text" />
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/error_text"
+        style="@style/TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/web_text"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 </RelativeLayout>

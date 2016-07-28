@@ -1,8 +1,8 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.support.annotation.NonNull;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
 
 import java.util.List;
 

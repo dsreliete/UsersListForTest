@@ -17,4 +17,9 @@
         <item name="android:color">@color/primaryText</item>
     </style>
 
+    <style name="TextView.NoPadding" parent="Base.TextAppearance.AppCompat.Small">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:color">@color/primaryText</item>
+    </style>
+
 </resources>

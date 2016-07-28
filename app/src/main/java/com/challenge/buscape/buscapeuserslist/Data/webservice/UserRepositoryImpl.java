@@ -1,12 +1,10 @@
-package com.challenge.buscape.buscapeuserslist.Data.webservice;
+package com.challenge.buscape.buscapeuserslist.data.webservice;
 
 import android.os.Handler;
-import android.util.Log;
 
-import com.challenge.buscape.buscapeuserslist.Data.model.User;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
 
 import java.util.List;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,7 +13,7 @@ import retrofit2.Response;
 /**
  * Created by eliete on 7/25/16.
  */
-public class WebServiceImpl implements WebService {
+public class UserRepositoryImpl implements UserRepository {
 
     private List<User> list;
     boolean handler;
@@ -23,14 +21,12 @@ public class WebServiceImpl implements WebService {
     @Override
     public void getUsersList(final getListOnFinishedListener listener) {
 
-        RetrofitWebServiceManager manager = new RetrofitWebServiceApiManagerImpl();
-        RetrofitWebServiceApi webServiceApi = manager.getWebServiceApiInstance();
+        WebServiceManager manager = new WebServiceApiManagerImpl();
+        WebServiceApi webServiceApi = manager.getWebServiceApiInstance();
         webServiceApi.getUsersList().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                Log.e("eliete", " response raw " + response.raw());
                 if (response.isSuccessful()){
-                    Log.e("eliete", " response.body " + response.body());
                     list = response.body();
                     callMainThreadToReturnList(list, listener);
 
@@ -40,7 +36,6 @@ public class WebServiceImpl implements WebService {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                Log.e("Retrofit request", "failed");
                 list = null;
                 callMainThreadToReturnList(list, listener);
             }

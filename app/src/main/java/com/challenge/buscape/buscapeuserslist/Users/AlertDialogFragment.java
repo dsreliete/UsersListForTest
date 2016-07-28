@@ -1,4 +1,4 @@
-package com.challenge.buscape.buscapeuserslist.Users;
+package com.challenge.buscape.buscapeuserslist.users;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,9 +13,13 @@ public class AlertDialogFragment extends android.support.v4.app.DialogFragment {
 
     public static final String MESSAGE = "message";
     private String message;
+    private DialogInterface.OnClickListener listener;
 
-    public static AlertDialogFragment newInstance(){
+    public static AlertDialogFragment newInstance(String message){
         AlertDialogFragment fragment = new AlertDialogFragment();
+        Bundle b = new Bundle();
+        b.putString(MESSAGE, message);
+        fragment.setArguments(b);
         return fragment;
     }
 
@@ -31,7 +35,7 @@ public class AlertDialogFragment extends android.support.v4.app.DialogFragment {
         if(savedInstanceState != null){
             message = savedInstanceState.getString(MESSAGE);
         }else{
-            message = getResources().getString(R.string.network_msg);
+            message = getArguments().getString(MESSAGE);
         }
 
         android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(getActivity());
