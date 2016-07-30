@@ -20,14 +20,18 @@ public interface MainContract {
         void showUsersList(List<User> list);
 
         void showUserDetailActivity(User user);
+
     }
 
     interface UserActionListener{
 
         void fetchUserList();
 
-        void onDestroy();
-
         void openItemDetails(@NonNull User requestedUser);
+
+        //void saveConditionTime(boolean firstTime);
+
+        //boolean getSavedConditionTime();
+
     }
 }

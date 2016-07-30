@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.challenge.buscape.buscapeuserslist.R;
+import com.crashlytics.android.Crashlytics;
 
 /**
  * Created by eliete on 7/26/16.
@@ -13,7 +14,6 @@ public class AlertDialogFragment extends android.support.v4.app.DialogFragment {
 
     public static final String MESSAGE = "message";
     private String message;
-    private DialogInterface.OnClickListener listener;
 
     public static AlertDialogFragment newInstance(String message){
         AlertDialogFragment fragment = new AlertDialogFragment();
@@ -26,12 +26,12 @@ public class AlertDialogFragment extends android.support.v4.app.DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.log("On create dialog failed ");
         setRetainInstance(true);
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         if(savedInstanceState != null){
             message = savedInstanceState.getString(MESSAGE);
         }else{

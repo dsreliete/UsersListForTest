@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.challenge.buscape.buscapeuserslist.R;
 import com.challenge.buscape.buscapeuserslist.data.model.User;
 import com.challenge.buscape.buscapeuserslist.users.MainActivity;
+import com.crashlytics.android.Crashlytics;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -66,6 +67,9 @@ public class UserDetailActivity extends AppCompatActivity implements RuntimePerm
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Crashlytics.log(UserDetailActivity.class.getSimpleName() + " OnCreate");
+
 
         if (savedInstanceState != null) {
             user = (User) savedInstanceState.getSerializable(MainActivity.EXTRA_USER);

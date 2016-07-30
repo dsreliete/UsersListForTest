@@ -14,14 +14,16 @@ import android.widget.ProgressBar;
 
 import com.challenge.buscape.buscapeuserslist.R;
 import com.challenge.buscape.buscapeuserslist.data.model.User;
-import com.challenge.buscape.buscapeuserslist.data.webservice.UserRepositoryImpl;
+import com.challenge.buscape.buscapeuserslist.data.UserRepositoryImpl;
 import com.challenge.buscape.buscapeuserslist.usersDetail.UserDetailActivity;
+import com.crashlytics.android.Crashlytics;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends InternetDetectionActivity implements MainContract.View {
 
@@ -41,15 +43,33 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
     private UserAdapter adapter;
     private List<User> userList = new ArrayList<>();
     private String imageDetailLink;
+//    private boolean firstTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
-
         setSupportActionBar(toolbar);
+        Crashlytics.log(MainActivity.class.getSimpleName() + " OnCreate");
+        userActionListener = new MainPresenter(this, new UserRepositoryImpl());
+
+//        if (!firstTime) {
+//            firstTime = true;
+//            userActionListener.saveConditionTime(firstTime);
+//        }
+//        if (MainActivity.hasConnection(this) || (!MainActivity.hasConnection(this)
+//                && userActionListener.getSavedConditionTime())) {
+        if (MainActivity.hasConnection(this)) {
+            userActionListener.fetchUserList();
+        }else {
+            AlertDialogFragment alertDialogFragment =
+                    AlertDialogFragment.newInstance(getResources().getString(R.string.network_msg));
+            alertDialogFragment.show(getSupportFragmentManager(), "alert");
+        }
 
         String imageLink = getImageLinkBasedOnResolutionScreen();
         adapter = new UserAdapter(userList, userTouchListener, imageLink);
@@ -60,15 +80,13 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        if (MainActivity.hasConnection(this)) {
-            userActionListener = new MainPresenter(this, new UserRepositoryImpl());
-            userActionListener.fetchUserList();
-        }else {
-            AlertDialogFragment alertDialogFragment =
-                    AlertDialogFragment.newInstance(getResources().getString(R.string.network_msg));
-            alertDialogFragment.show(getSupportFragmentManager(), "alert");
-        }
+
     }
+
+//    private void forceCrash() {
+//        throw new RuntimeException("This is a crash");
+//    }
+
 
     public String getImageLinkBasedOnResolutionScreen(){
         String link = "";
@@ -153,11 +171,5 @@ public class MainActivity extends InternetDetectionActivity implements MainContr
     public void initDownload() {
         userActionListener = new MainPresenter(this, new UserRepositoryImpl());
         userActionListener.fetchUserList();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        userActionListener.onDestroy();
     }
 }

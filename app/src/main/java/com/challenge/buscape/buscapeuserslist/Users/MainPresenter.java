@@ -1,9 +1,10 @@
 package com.challenge.buscape.buscapeuserslist.users;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.challenge.buscape.buscapeuserslist.data.UserRepository;
 import com.challenge.buscape.buscapeuserslist.data.model.User;
-import com.challenge.buscape.buscapeuserslist.data.webservice.UserRepository;
 
 import java.util.List;
 
@@ -26,8 +27,7 @@ public class MainPresenter implements MainContract.UserActionListener,
         if (mainContract != null) {
             mainContract.showProgress();
         }
-
-        userRepository.getUsersList(this);
+        userRepository.getUsersList(this, (Context) mainContract);
     }
 
     @Override
@@ -37,13 +37,18 @@ public class MainPresenter implements MainContract.UserActionListener,
     }
 
     @Override
-    public void onDestroy() {
-        mainContract = null;
-
-    }
-
-    @Override
     public void openItemDetails(@NonNull User requestedUser) {
         mainContract.showUserDetailActivity(requestedUser);
     }
+
+//    @Override
+//    public void saveConditionTime(boolean firstTime) {
+//        userRepository.saveFirstTimeCondition(firstTime, (Activity) mainContract);
+//    }
+//
+//    @Override
+//    public boolean getSavedConditionTime() {
+//        return userRepository.getSavedFirstCondition((Activity) mainContract);
+//    }
+
 }

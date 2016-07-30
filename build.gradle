@@ -42,5 +42,6 @@ ext {
     gsonVersion = '2.6.2'
     picassoVersion = '2.5.2'
     retrofitVersion = '2.0.1'
+//    loggingnterceptor = '3.3.0'
 
 }

@@ -25,32 +25,26 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/name_text"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
+            style="@style/TextView.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="eliete rodirges"
-            android:textColor="@color/primaryText"
-            android:paddingLeft="16dp"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/email_text"
-            android:layout_alignStart="@+id/email_text"
-            android:layout_marginTop="16dp">
+            android:layout_alignStart="@+id/email_text">
 
         </android.support.v7.widget.AppCompatTextView>
 
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/email_text"
-            style="@style/Base.TextAppearance.AppCompat.Small"
+            style="@style/TextView.Small.Margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="eliete rodirges"
-            android:textColor="@color/secundaryText"
             android:layout_below="@+id/name_text"
             android:layout_alignLeft="@+id/more_button"
-            android:layout_alignStart="@+id/more_button"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="16dp">
+            android:layout_alignStart="@+id/more_button">
 
         </android.support.v7.widget.AppCompatTextView>
 
@@ -65,7 +59,8 @@
             android:layout_below="@+id/view"
             android:layout_toRightOf="@+id/person_image"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <View
             android:layout_width="match_parent"

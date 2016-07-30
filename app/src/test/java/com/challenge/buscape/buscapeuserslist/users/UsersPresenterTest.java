@@ -2,7 +2,7 @@ package com.challenge.buscape.buscapeuserslist.users;
 
 import com.challenge.buscape.buscapeuserslist.data.model.Address;
 import com.challenge.buscape.buscapeuserslist.data.model.User;
-import com.challenge.buscape.buscapeuserslist.data.webservice.UserRepository;
+import com.challenge.buscape.buscapeuserslist.data.UserRepository;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.challenge.buscape.buscapeuserslist.data.model.User;
 import com.challenge.buscape.buscapeuserslist.R;
+import com.challenge.buscape.buscapeuserslist.data.model.User;
+import com.crashlytics.android.Crashlytics;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         userList = list;
         userTouchListener = touchListener;
         imageLink = link;
+        Crashlytics.log("User Adapter");
     }
 
     @Override
